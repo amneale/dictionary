@@ -1,0 +1,20 @@
+{
+    "name": "amneale/lexicon",
+    "description": "generate random strings from a given dictionary",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Adam Neale",
+            "email": "adam@adam-neale.co.uk"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpspec/phpspec": "^5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lexicon\\": "src/"
+        }
+    }
+}
