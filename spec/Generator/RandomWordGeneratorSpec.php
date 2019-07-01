@@ -4,6 +4,7 @@ namespace spec\Lexicon\Generator;
 
 use Lexicon\Dictionary\Dictionary;
 use Lexicon\Generator\Generator;
+use PhpSpec\Exception\Example\FailureException;
 use PhpSpec\ObjectBehavior;
 
 class RandomWordGeneratorSpec extends ObjectBehavior
@@ -27,10 +28,9 @@ class RandomWordGeneratorSpec extends ObjectBehavior
         $this->shouldImplement(Generator::class);
     }
 
-    public function it_generates_random_strings(): void
+    public function it_generates_a_random_string(): void
     {
         $string = $this->getNext();
-
         $string->shouldBeString();
         $string->shouldBeInArray(self::STRINGS);
     }
@@ -42,10 +42,18 @@ class RandomWordGeneratorSpec extends ObjectBehavior
     {
         return [
             'beInArray' => static function($subject, $array) {
-                return in_array($subject, $array, true);
+                if (!in_array($subject, $array, true)) {
+                    throw new FailureException(
+                        sprintf(
+                            '"%s" expected to be in array ["%s"], but it is not.',
+                            $subject,
+                            implode('", "', $array)
+                        )
+                    );
+                }
+
+                return true;
             },
         ];
     }
-
-
 }
