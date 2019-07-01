@@ -45,9 +45,9 @@ class RandomWordGeneratorSpec extends ObjectBehavior
                 if (!in_array($subject, $array, true)) {
                     throw new FailureException(
                         sprintf(
-                            '"%s" expected to be in array ["%s"], but it is not.',
+                            '"%s" expected to be in array %s, but it is not.',
                             $subject,
-                            implode('", "', $array)
+                            json_encode($array)
                         )
                     );
                 }

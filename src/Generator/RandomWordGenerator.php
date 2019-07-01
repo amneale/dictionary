@@ -21,11 +21,10 @@ class RandomWordGenerator implements Generator
 
     /**
      * @inheritDoc
-     * @throws \Exception
      */
     public function getNext(): string
     {
-        $words = iterator_to_array($this->dictionary);
+        $words = $this->dictionary->toArray();
 
         return $words[random_int(0, count($words) - 1)];
     }

@@ -2,7 +2,7 @@
 
 namespace Lexicon\Dictionary;
 
-final class Dictionary implements \IteratorAggregate
+final class Dictionary implements \Countable, \IteratorAggregate
 {
     /**
      * @var string[]
@@ -20,8 +20,24 @@ final class Dictionary implements \IteratorAggregate
     /**
      * @inheritDoc
      */
+    public function count()
+    {
+        return count($this->words);
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function getIterator(): \ArrayIterator
     {
         return new \ArrayIterator($this->words);
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return $this->words;
     }
 }
