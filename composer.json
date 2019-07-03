@@ -13,7 +13,8 @@
     },
     "require-dev": {
         "phpspec/phpspec": "^5.1",
-        "webmozart/assert": "^1.4"
+        "webmozart/assert": "^1.4",
+        "adlawson/vfs": "^0.12.1"
     },
     "autoload": {
         "psr-4": {

@@ -16,7 +16,7 @@ class DictionarySpec extends ObjectBehavior
     public function it_is_countable(): void
     {
         $this->shouldImplement(\Countable::class);
-        $this->count()->shouldReturn(3);
+        $this->shouldHaveCount(3);
     }
 
     public function it_is_iterable(): void

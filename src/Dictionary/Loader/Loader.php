@@ -1,6 +1,8 @@
 <?php
 
-namespace Lexicon\Dictionary;
+namespace Lexicon\Dictionary\Loader;
+
+use Lexicon\Dictionary\Dictionary;
 
 interface Loader
 {
