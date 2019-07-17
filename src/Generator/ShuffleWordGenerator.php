@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lexicon\Generator;
 
 use Lexicon\Dictionary\Dictionary;

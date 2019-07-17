@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace spec\Lexicon\Generator;
 
 use Lexicon\Dictionary\Dictionary;
@@ -41,7 +43,7 @@ class RandomWordGeneratorSpec extends ObjectBehavior
     public function getMatchers(): array
     {
         return [
-            'beInArray' => static function($subject, $array) {
+            'beInArray' => static function ($subject, $array) {
                 if (!in_array($subject, $array, true)) {
                     throw new FailureException(
                         sprintf(

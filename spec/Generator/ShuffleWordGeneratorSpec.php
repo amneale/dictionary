@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace spec\Lexicon\Generator;
 
 use Lexicon\Dictionary\Dictionary;
@@ -51,7 +53,7 @@ class ShuffleWordGeneratorSpec extends ObjectBehavior
     {
         $count = count(self::STRINGS) + 1;
 
-        for ($i = 0; $i < $count; $i++) {
+        for ($i = 0; $i < $count; ++$i) {
             $this->getNext()->shouldBeString();
         }
     }
@@ -67,5 +69,4 @@ class ShuffleWordGeneratorSpec extends ObjectBehavior
 
         return $array;
     }
-
 }

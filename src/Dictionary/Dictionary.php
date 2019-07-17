@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lexicon\Dictionary;
 
 final class Dictionary implements \Countable, \IteratorAggregate

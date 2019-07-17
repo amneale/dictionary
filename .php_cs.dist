@@ -1,0 +1,53 @@
+<?php
+
+$finder = PhpCsFixer\Finder::create()
+    ->files()
+    ->in(__DIR__ . '/src')
+    ->in(__DIR__ . '/spec')
+    ->name('*.php');
+
+return PhpCsFixer\Config::create()
+    ->setRiskyAllowed(true)
+    ->setRules([
+        '@PSR2' => true,
+        '@PHP71Migration:risky' => true,
+        '@DoctrineAnnotation' => true,
+        '@Symfony' => true,
+        'phpdoc_to_comment' => false,
+
+        'phpdoc_align' => false, // @Symfony
+        'phpdoc_inline_tag' => false, // @Symfony
+        'concat_space' => ['spacing' => 'one'], // @Symfony
+
+        'array_syntax' => ['syntax' => 'short'],
+        'strict_comparison' => true, // @risky
+        'ordered_imports' => ['sortAlgorithm' => 'alpha'],
+        'multiline_whitespace_before_semicolons' => ['strategy' => 'no_multi_line'],
+        'linebreak_after_opening_tag' => true,
+        'no_useless_else' => true,
+        'no_superfluous_elseif' => true,
+        'no_short_echo_tag' => true,
+        'method_chaining_indentation' => true,
+        'combine_consecutive_unsets' => true,
+        'no_unreachable_default_argument_value' => true, // @risky
+        'multiline_comment_opening_closing' => true,
+        'align_multiline_comment' => true,
+
+        'ordered_class_elements' => [
+            'use_trait',
+            'constant_public',
+            'constant_protected',
+            'constant_private',
+            'property_public',
+            'property_protected',
+            'property_private',
+            'construct',
+            'destruct',
+            'magic',
+            'phpunit',
+            'method_public',
+            'method_protected',
+            'method_private',
+        ],
+    ])
+    ->setFinder($finder);

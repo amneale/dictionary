@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lexicon\Dictionary\Loader;
 
 use Lexicon\Dictionary\Dictionary;

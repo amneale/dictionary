@@ -29,6 +29,13 @@ install: vendor
 # Test #
 ########
 
+.PHONY: test test-unit code-style
+
 test: TEST:=1
-test: vendor ## Run all tests
+test: code-style test-unit ## Run all tests & analyses
+
+test-unit: vendor ## Run unit tests
 	./vendor/bin/phpspec run -fdot
+
+code-style: vendor ## Analyse code style
+	./vendor/bin/php-cs-fixer fix $(if $(TEST), -v --dry-run)
