@@ -11,12 +11,6 @@ use Vfs\FileSystem;
 
 class FileLoaderSpec extends ObjectBehavior
 {
-    private const DATA = <<<EOD
-Foo
-Bar
-Baz
-EOD;
-
     /**
      * @var FileSystem
      */
@@ -27,16 +21,32 @@ EOD;
         $this->shouldImplement(Loader::class);
     }
 
-    public function it_loads_strings_from_a_txt_file(): void
+    public function it_loads_strings_from_a_line_separated_file(): void
     {
-        $filename = $this->writeToFile(self::DATA);
-        $dictionary = $this->load($filename);
+        $filename = $this->writeToFile("Foo\nBar\nBaz");
 
+        $dictionary = $this->load($filename);
         $dictionary->shouldBeAnInstanceOf(Dictionary::class);
         $dictionary->shouldHaveCount(3);
         $dictionary->toArray()->shouldEqual(['Foo', 'Bar', 'Baz']);
     }
 
+    public function it_loads_strings_from_a_comma_separated_file(): void
+    {
+        $filename = $this->writeToFile('Foo,Bar,Baz');
+        $this->setDelimiter(',');
+
+        $dictionary = $this->load($filename);
+        $dictionary->shouldBeAnInstanceOf(Dictionary::class);
+        $dictionary->shouldHaveCount(3);
+        $dictionary->toArray()->shouldEqual(['Foo', 'Bar', 'Baz']);
+    }
+
+    /**
+     * @param string $data
+     *
+     * @return string
+     */
     private function writeToFile(string $data): string
     {
         if (null === $this->filesystem) {
