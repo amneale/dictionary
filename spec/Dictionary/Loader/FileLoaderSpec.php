@@ -9,7 +9,7 @@ use Lexicon\Dictionary\Loader\Loader;
 use PhpSpec\ObjectBehavior;
 use Vfs\FileSystem;
 
-class TxtFileLoaderSpec extends ObjectBehavior
+class FileLoaderSpec extends ObjectBehavior
 {
     private const DATA = <<<EOD
 Foo

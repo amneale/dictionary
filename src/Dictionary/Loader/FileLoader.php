@@ -6,7 +6,7 @@ namespace Lexicon\Dictionary\Loader;
 
 use Lexicon\Dictionary\Dictionary;
 
-class TxtFileLoader implements Loader
+class FileLoader implements Loader
 {
     /**
      * @inheritDoc
