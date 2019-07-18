@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace spec\Lexicon\Generator;
 
 use Lexicon\Dictionary\Dictionary;
+use Lexicon\Dictionary\Loader\Loader;
 use Lexicon\Generator\Generator;
 use PhpSpec\Exception\Example\FailureException;
 use PhpSpec\ObjectBehavior;
@@ -27,6 +28,20 @@ class RandomWordGeneratorSpec extends ObjectBehavior
 
     public function it_is_a_generator(): void
     {
+        $this->shouldImplement(Generator::class);
+    }
+
+    public function it_can_be_created_from_words(): void
+    {
+        $this->beConstructedThrough('fromWords', self::STRINGS);
+        $this->shouldImplement(Generator::class);
+    }
+
+    public function it_can_be_created_from_a_loader(Loader $loader): void
+    {
+        $loader->load('foo/bar/baz')->willReturn(new Dictionary(...self::STRINGS));
+
+        $this->beConstructedThrough('fromLoader', [$loader, 'foo/bar/baz']);
         $this->shouldImplement(Generator::class);
     }
 

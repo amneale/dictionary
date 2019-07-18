@@ -8,6 +8,8 @@ use Lexicon\Dictionary\Dictionary;
 
 class RandomWordGenerator implements Generator
 {
+    use Factory;
+
     /**
      * @var Dictionary
      */
