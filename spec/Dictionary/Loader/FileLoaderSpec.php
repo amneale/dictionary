@@ -11,10 +11,12 @@ use Vfs\FileSystem;
 
 class FileLoaderSpec extends ObjectBehavior
 {
+    private const SCHEME = 'vfs://';
+
     /**
      * @var FileSystem
      */
-    private $filesystem;
+    private static $filesystem;
 
     public function it_is_a_loader(): void
     {
@@ -49,12 +51,12 @@ class FileLoaderSpec extends ObjectBehavior
      */
     private function writeToFile(string $data): string
     {
-        if (null === $this->filesystem) {
-            $this->filesystem = FileSystem::factory('vfs://');
-            $this->filesystem->mount();
+        if (null === self::$filesystem) {
+            self::$filesystem = FileSystem::factory(self::SCHEME);
+            self::$filesystem->mount();
         }
 
-        $filename = 'vfs://' . uniqid('file', true) . 'txt';
+        $filename = self::SCHEME . uniqid('file', true) . 'txt';
         file_put_contents($filename, $data);
 
         return $filename;
