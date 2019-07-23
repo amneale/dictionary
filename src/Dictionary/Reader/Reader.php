@@ -4,7 +4,14 @@ declare(strict_types=1);
 
 namespace Lexicon\Dictionary\Reader;
 
+use Lexicon\Dictionary\Dictionary;
+
 interface Reader
 {
-    public function getNext(): string;
+    /**
+     * @param Dictionary $dictionary
+     *
+     * @return string
+     */
+    public function read(Dictionary $dictionary): string;
 }

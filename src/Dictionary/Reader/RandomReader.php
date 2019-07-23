@@ -8,27 +8,12 @@ use Lexicon\Dictionary\Dictionary;
 
 class RandomReader implements Reader
 {
-    use Factory;
-
-    /**
-     * @var Dictionary
-     */
-    private $dictionary;
-
-    /**
-     * @param Dictionary $dictionary
-     */
-    public function __construct(Dictionary $dictionary)
-    {
-        $this->dictionary = $dictionary;
-    }
-
     /**
      * @inheritDoc
      */
-    public function getNext(): string
+    public function read(Dictionary $dictionary): string
     {
-        $words = $this->dictionary->toArray();
+        $words = $dictionary->toArray();
 
         return $words[random_int(0, count($words) - 1)];
     }

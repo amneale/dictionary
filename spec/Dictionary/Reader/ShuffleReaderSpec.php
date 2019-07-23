@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace spec\Lexicon\Dictionary\Reader;
 
 use Lexicon\Dictionary\Dictionary;
-use Lexicon\Dictionary\Loader\Loader;
 use Lexicon\Dictionary\Reader\Reader;
 use PhpSpec\ObjectBehavior;
 use Webmozart\Assert\Assert;
@@ -22,35 +21,19 @@ class ShuffleReaderSpec extends ObjectBehavior
     public function let(): void
     {
         $this->dictionary = new Dictionary(...self::STRINGS);
-
-        $this->beConstructedWith($this->dictionary);
     }
 
-    public function it_is_a_generator(): void
+    public function it_is_a_reader(): void
     {
-        $this->shouldImplement(Reader::class);
-    }
-
-    public function it_can_be_created_from_words(): void
-    {
-        $this->beConstructedThrough('fromWords', self::STRINGS);
-        $this->shouldImplement(Reader::class);
-    }
-
-    public function it_can_be_created_from_a_loader(Loader $loader): void
-    {
-        $loader->load('foo/bar/baz')->willReturn(new Dictionary(...self::STRINGS));
-
-        $this->beConstructedThrough('fromLoader', [$loader, 'foo/bar/baz']);
         $this->shouldImplement(Reader::class);
     }
 
     public function it_reads_each_string(): void
     {
         $strings = [
-            $this->getNext()->getWrappedObject(),
-            $this->getNext()->getWrappedObject(),
-            $this->getNext()->getWrappedObject(),
+            $this->read($this->dictionary)->getWrappedObject(),
+            $this->read($this->dictionary)->getWrappedObject(),
+            $this->read($this->dictionary)->getWrappedObject(),
         ];
 
         Assert::eq(
@@ -69,7 +52,7 @@ class ShuffleReaderSpec extends ObjectBehavior
         $count = count(self::STRINGS) + 1;
 
         for ($i = 0; $i < $count; ++$i) {
-            $this->getNext()->shouldBeString();
+            $this->read($this->dictionary)->shouldBeString();
         }
     }
 

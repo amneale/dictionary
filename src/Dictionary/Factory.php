@@ -7,14 +7,14 @@ namespace Lexicon\Dictionary\Reader;
 use Lexicon\Dictionary\Dictionary;
 use Lexicon\Dictionary\Loader\Loader;
 
-trait Factory
+final class Factory
 {
     /**
      * @param string[] $words
      *
      * @return Reader
      */
-    public static function fromWords(string ...$words): Reader
+    public function fromWords(string ...$words): Reader
     {
         return self::create(new Dictionary(...$words));
     }
@@ -25,7 +25,7 @@ trait Factory
      *
      * @return Reader
      */
-    public static function fromLoader(Loader $loader, string $resource): Reader
+    public function fromLoader(Loader $loader, string $resource): Reader
     {
         return self::create($loader->load($resource));
     }

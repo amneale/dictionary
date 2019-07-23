@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace spec\Lexicon\Dictionary\Reader;
 
 use Lexicon\Dictionary\Dictionary;
-use Lexicon\Dictionary\Loader\Loader;
 use Lexicon\Dictionary\Reader\Reader;
 use PhpSpec\Exception\Example\FailureException;
 use PhpSpec\ObjectBehavior;
@@ -22,8 +21,6 @@ class RandomReaderSpec extends ObjectBehavior
     public function let(): void
     {
         $this->dictionary = new Dictionary(...self::STRINGS);
-
-        $this->beConstructedWith($this->dictionary);
     }
 
     public function it_is_a_reader(): void
@@ -31,23 +28,9 @@ class RandomReaderSpec extends ObjectBehavior
         $this->shouldImplement(Reader::class);
     }
 
-    public function it_can_be_created_from_words(): void
-    {
-        $this->beConstructedThrough('fromWords', self::STRINGS);
-        $this->shouldImplement(Reader::class);
-    }
-
-    public function it_can_be_created_from_a_loader(Loader $loader): void
-    {
-        $loader->load('foo/bar/baz')->willReturn(new Dictionary(...self::STRINGS));
-
-        $this->beConstructedThrough('fromLoader', [$loader, 'foo/bar/baz']);
-        $this->shouldImplement(Reader::class);
-    }
-
     public function it_reads_a_random_string(): void
     {
-        $string = $this->getNext();
+        $string = $this->read($this->dictionary);
         $string->shouldBeString();
         $string->shouldBeInArray(self::STRINGS);
     }

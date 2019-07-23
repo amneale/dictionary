@@ -8,46 +8,68 @@ use Lexicon\Dictionary\Dictionary;
 
 class ShuffleReader implements Reader
 {
-    use Factory;
+    /**
+     * @var Dictionary[]
+     */
+    private $dictionaries = [];
 
     /**
-     * @var Dictionary
+     * @var int[]
      */
-    private $dictionary;
-
-    /**
-     * @var int|null
-     */
-    private $currentIndex;
-
-    /**
-     * @param Dictionary $dictionary
-     */
-    public function __construct(Dictionary $dictionary)
-    {
-        $this->dictionary = $dictionary;
-    }
+    private $indexes = [];
 
     /**
      * @inheritDoc
      */
-    public function getNext(): string
+    public function read(Dictionary $dictionary): string
     {
-        if (null === $this->currentIndex || $this->currentIndex === count($this->dictionary)) {
-            $this->shuffle();
+        if ($this->needsShuffling($dictionary)) {
+            $this->shuffle($dictionary);
         }
 
-        $words = $this->dictionary->toArray();
+        $key = $this->getDictionaryKey($dictionary);
+        $words = $this->dictionaries[$key]->toArray();
 
-        return $words[$this->currentIndex++];
+        return $words[$this->indexes[$key]++];
     }
 
-    private function shuffle(): void
+    /**
+     * @param Dictionary $dictionary
+     *
+     * @return bool
+     */
+    private function needsShuffling(Dictionary $dictionary): bool
     {
-        $dictionaryArray = $this->dictionary->toArray();
+        $key = $this->getDictionaryKey($dictionary);
+
+        if (!isset($this->dictionaries[$key], $this->indexes[$key])) {
+            return true;
+        }
+
+        return $this->indexes[$key] === count($this->dictionaries[$key]);
+    }
+
+    /**
+     * @param Dictionary $dictionary
+     */
+    private function shuffle(Dictionary $dictionary): void
+    {
+        $key = $this->getDictionaryKey($dictionary);
+
+        $dictionaryArray = $dictionary->toArray();
         shuffle($dictionaryArray);
 
-        $this->dictionary = new Dictionary(...$dictionaryArray);
-        $this->currentIndex = 0;
+        $this->dictionaries[$key] = new Dictionary(...$dictionaryArray);
+        $this->indexes[$key] = 0;
+    }
+
+    /**
+     * @param Dictionary $dictionary
+     *
+     * @return int
+     */
+    private function getDictionaryKey(Dictionary $dictionary): int
+    {
+        return spl_object_id($dictionary);
     }
 }
