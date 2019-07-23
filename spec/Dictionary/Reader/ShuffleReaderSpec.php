@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace spec\Lexicon\Generator;
+namespace spec\Lexicon\Dictionary\Reader;
 
 use Lexicon\Dictionary\Dictionary;
 use Lexicon\Dictionary\Loader\Loader;
-use Lexicon\Generator\Generator;
+use Lexicon\Dictionary\Reader\Reader;
 use PhpSpec\ObjectBehavior;
 use Webmozart\Assert\Assert;
 
-class ShuffleWordGeneratorSpec extends ObjectBehavior
+class ShuffleReaderSpec extends ObjectBehavior
 {
     private const STRINGS = ['foo', 'bar', 'baz'];
 
@@ -28,24 +28,24 @@ class ShuffleWordGeneratorSpec extends ObjectBehavior
 
     public function it_is_a_generator(): void
     {
-        $this->shouldImplement(Generator::class);
+        $this->shouldImplement(Reader::class);
     }
 
     public function it_can_be_created_from_words(): void
     {
         $this->beConstructedThrough('fromWords', self::STRINGS);
-        $this->shouldImplement(Generator::class);
+        $this->shouldImplement(Reader::class);
     }
 
-//    public function it_can_be_created_from_a_loader(Loader $loader): void
-//    {
-//        $loader->load('foo/bar/baz')->willReturn(new Dictionary(...self::STRINGS));
-//
-//        $this->beConstructedThrough('fromLoader', [$loader, 'foo/bar/baz']);
-//        $this->shouldImplement(Generator::class);
-//    }
+    public function it_can_be_created_from_a_loader(Loader $loader): void
+    {
+        $loader->load('foo/bar/baz')->willReturn(new Dictionary(...self::STRINGS));
 
-    public function it_generates_each_string(): void
+        $this->beConstructedThrough('fromLoader', [$loader, 'foo/bar/baz']);
+        $this->shouldImplement(Reader::class);
+    }
+
+    public function it_reads_each_string(): void
     {
         $strings = [
             $this->getNext()->getWrappedObject(),

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lexicon\Generator;
+namespace Lexicon\Dictionary\Reader;
 
 use Lexicon\Dictionary\Dictionary;
 use Lexicon\Dictionary\Loader\Loader;
@@ -12,9 +12,9 @@ trait Factory
     /**
      * @param string[] $words
      *
-     * @return Generator
+     * @return Reader
      */
-    public static function fromWords(string ...$words): Generator
+    public static function fromWords(string ...$words): Reader
     {
         return self::create(new Dictionary(...$words));
     }
@@ -23,9 +23,9 @@ trait Factory
      * @param Loader $loader
      * @param string $resource
      *
-     * @return Generator
+     * @return Reader
      */
-    public static function fromLoader(Loader $loader, string $resource): Generator
+    public static function fromLoader(Loader $loader, string $resource): Reader
     {
         return self::create($loader->load($resource));
     }
@@ -33,9 +33,9 @@ trait Factory
     /**
      * @param Dictionary $dictionary
      *
-     * @return Generator
+     * @return Reader
      */
-    private static function create(Dictionary $dictionary): Generator
+    private static function create(Dictionary $dictionary): Reader
     {
         $className = static::class;
 

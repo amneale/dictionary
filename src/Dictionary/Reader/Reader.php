@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Lexicon\Generator;
+namespace Lexicon\Dictionary\Reader;
 
-interface Generator
+interface Reader
 {
     public function getNext(): string;
 }

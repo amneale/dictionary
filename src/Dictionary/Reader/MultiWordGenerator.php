@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Lexicon\Generator;
+namespace Lexicon\Dictionary\Reader;
 
-class MultiWordGenerator implements Generator
+class MultiWordGenerator implements Reader
 {
     /**
      * @var Generator[]

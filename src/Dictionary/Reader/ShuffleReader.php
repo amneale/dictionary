@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Lexicon\Generator;
+namespace Lexicon\Dictionary\Reader;
 
 use Lexicon\Dictionary\Dictionary;
 
-class ShuffleWordGenerator implements Generator
+class ShuffleReader implements Reader
 {
     use Factory;
 
