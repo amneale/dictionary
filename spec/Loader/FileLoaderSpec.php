@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace spec\Lexicon\Dictionary\Loader;
+namespace spec\Lexicon\Loader;
 
-use Lexicon\Dictionary\Dictionary;
-use Lexicon\Dictionary\Loader\Loader;
+use Lexicon\Dictionary;
+use Lexicon\Loader\Loader;
 use PhpSpec\ObjectBehavior;
 use Vfs\FileSystem;
 

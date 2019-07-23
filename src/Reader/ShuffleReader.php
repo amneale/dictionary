@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Lexicon\Dictionary\Reader;
+namespace Lexicon\Reader;
 
-use Lexicon\Dictionary\Dictionary;
+use Lexicon\Dictionary;
 
 class ShuffleReader implements Reader
 {

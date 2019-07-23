@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace spec\Lexicon\Dictionary;
+namespace spec\Lexicon;
 
 use PhpSpec\ObjectBehavior;
 
