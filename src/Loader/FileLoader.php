@@ -9,26 +9,13 @@ use Lexicon\Dictionary;
 class FileLoader implements Loader
 {
     /**
-     * @var string
-     */
-    private $delimiter = "\n";
-
-    /**
      * @inheritDoc
      */
-    public function load(string $resource): Dictionary
+    public function load(string $resource, string $delimiter = "\n"): Dictionary
     {
         $contents = file_get_contents($resource);
-        $words = explode($this->delimiter, $contents);
+        $words = explode($delimiter, $contents);
 
         return new Dictionary(...$words);
-    }
-
-    /**
-     * @param string $delimiter
-     */
-    public function setDelimiter(string $delimiter): void
-    {
-        $this->delimiter = $delimiter;
     }
 }
