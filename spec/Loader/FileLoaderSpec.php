@@ -2,17 +2,15 @@
 
 declare(strict_types=1);
 
-namespace spec\Lexicon\Dictionary\Loader;
+namespace spec\Lexicon\Loader;
 
-use Lexicon\Dictionary\Dictionary;
-use Lexicon\Dictionary\Loader\Loader;
+use Lexicon\Dictionary;
+use Lexicon\Loader\Loader;
 use PhpSpec\ObjectBehavior;
 use Vfs\FileSystem;
 
 class FileLoaderSpec extends ObjectBehavior
 {
-    private const SCHEME = 'vfs://';
-
     /**
      * @var FileSystem
      */
@@ -52,11 +50,11 @@ class FileLoaderSpec extends ObjectBehavior
     private function writeToFile(string $data): string
     {
         if (null === self::$filesystem) {
-            self::$filesystem = FileSystem::factory(self::SCHEME);
+            self::$filesystem = FileSystem::factory();
             self::$filesystem->mount();
         }
 
-        $filename = self::SCHEME . uniqid('file', true) . 'txt';
+        $filename = 'vfs://' . uniqid('file', true) . 'txt';
         file_put_contents($filename, $data);
 
         return $filename;

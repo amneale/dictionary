@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Lexicon\Dictionary\Loader;
+namespace Lexicon\Loader;
 
-use Lexicon\Dictionary\Dictionary;
+use Lexicon\Dictionary;
 
 interface Loader
 {
