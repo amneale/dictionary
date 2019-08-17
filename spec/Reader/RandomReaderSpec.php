@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace spec\Lexicon\Reader;
+namespace spec\Dictionary\Reader;
 
-use Lexicon\Dictionary;
-use Lexicon\Reader\Reader;
+use Dictionary\Dictionary;
+use Dictionary\Reader\Reader;
 use PhpSpec\Exception\Example\FailureException;
 use PhpSpec\ObjectBehavior;
 

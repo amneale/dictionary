@@ -1,6 +1,6 @@
 {
-    "name": "amneale/lexicon",
-    "description": "generate random strings from a given dictionary",
+    "name": "amneale/dictionary",
+    "description": "PHP library for loading and reading collections of strings",
     "type": "library",
     "authors": [
         {
@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": "^7.2",
+        "php": "^7.3",
         "ext-json": "*"
     },
     "require-dev": {
@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Lexicon\\": "src/"
+            "Dictionary\\": "src/"
         }
     }
 }

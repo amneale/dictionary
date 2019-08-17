@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Lexicon\Loader;
+namespace Dictionary\Loader;
 
-use Lexicon\Dictionary;
+use Dictionary\Dictionary;
 
 class FileLoader implements Loader
 {

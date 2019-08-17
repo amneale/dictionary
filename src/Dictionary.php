@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lexicon;
+namespace Dictionary;
 
 final class Dictionary implements \Countable, \IteratorAggregate
 {

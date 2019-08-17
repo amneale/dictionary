@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Lexicon\Reader;
+namespace Dictionary\Reader;
 
-use Lexicon\Dictionary;
+use Dictionary\Dictionary;
 
 interface Reader
 {
