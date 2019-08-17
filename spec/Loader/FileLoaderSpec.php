@@ -33,9 +33,10 @@ class FileLoaderSpec extends ObjectBehavior
 
     public function it_loads_strings_from_a_comma_separated_file(): void
     {
+        $this->beConstructedWith('', ',');
         $filename = $this->writeToFile('Foo,Bar,Baz');
 
-        $dictionary = $this->load($filename, ',');
+        $dictionary = $this->load($filename);
         $dictionary->shouldBeAnInstanceOf(Dictionary::class);
         $dictionary->shouldHaveCount(3);
         $dictionary->toArray()->shouldEqual(['Foo', 'Bar', 'Baz']);
