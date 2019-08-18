@@ -2,6 +2,7 @@
     "name": "amneale/dictionary",
     "description": "PHP library for loading and reading collections of strings",
     "type": "library",
+    "license": "MIT",
     "authors": [
         {
             "name": "Adam Neale",
