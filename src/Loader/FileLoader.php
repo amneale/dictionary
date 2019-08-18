@@ -29,6 +29,19 @@ class FileLoader implements Loader
     }
 
     /**
+     * @param string $resource
+     * @param string $delimiter
+     *
+     * @return Dictionary
+     */
+    public static function fromFile(string $resource, string $delimiter = "\n"): Dictionary
+    {
+        $loader = new static('', $delimiter);
+
+        return $loader->load($resource);
+    }
+
+    /**
      * @inheritDoc
      */
     public function load(string $resource): Dictionary

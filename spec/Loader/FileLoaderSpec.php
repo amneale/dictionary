@@ -16,6 +16,22 @@ class FileLoaderSpec extends ObjectBehavior
      */
     private static $filesystem;
 
+    /**
+     * @var string
+     */
+    private $file;
+
+    /**
+     * @var string
+     */
+    private $csvFile;
+
+    public function let(): void
+    {
+        $this->file = $this->writeToFile("Foo\nBar\nBaz");
+        $this->csvFile = $this->writeToFile('Foo,Bar,Baz');
+    }
+
     public function it_is_a_loader(): void
     {
         $this->shouldImplement(Loader::class);
@@ -23,9 +39,7 @@ class FileLoaderSpec extends ObjectBehavior
 
     public function it_loads_strings_from_a_line_separated_file(): void
     {
-        $filename = $this->writeToFile("Foo\nBar\nBaz");
-
-        $dictionary = $this->load($filename);
+        $dictionary = $this->load($this->file);
         $dictionary->shouldBeAnInstanceOf(Dictionary::class);
         $dictionary->shouldHaveCount(3);
         $dictionary->toArray()->shouldEqual(['Foo', 'Bar', 'Baz']);
@@ -34,9 +48,24 @@ class FileLoaderSpec extends ObjectBehavior
     public function it_loads_strings_from_a_comma_separated_file(): void
     {
         $this->beConstructedWith('', ',');
-        $filename = $this->writeToFile('Foo,Bar,Baz');
 
-        $dictionary = $this->load($filename);
+        $dictionary = $this->load($this->csvFile);
+        $dictionary->shouldBeAnInstanceOf(Dictionary::class);
+        $dictionary->shouldHaveCount(3);
+        $dictionary->toArray()->shouldEqual(['Foo', 'Bar', 'Baz']);
+    }
+
+    public function it_statically_loads_strings_from_a_line_separated_file(): void
+    {
+        $dictionary = $this::fromFile($this->file);
+        $dictionary->shouldBeAnInstanceOf(Dictionary::class);
+        $dictionary->shouldHaveCount(3);
+        $dictionary->toArray()->shouldEqual(['Foo', 'Bar', 'Baz']);
+    }
+
+    public function it_statically_loads_strings_from_a_comma_separated_file(): void
+    {
+        $dictionary = $this::fromFile($this->csvFile, ',');
         $dictionary->shouldBeAnInstanceOf(Dictionary::class);
         $dictionary->shouldHaveCount(3);
         $dictionary->toArray()->shouldEqual(['Foo', 'Bar', 'Baz']);
