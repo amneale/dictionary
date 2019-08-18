@@ -1,0 +1,11 @@
+language: php
+php:
+  - '7.3'
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+    - $HOME/.php-cs-fixer
+
+script:
+  - make test
