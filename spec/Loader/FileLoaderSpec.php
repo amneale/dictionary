@@ -71,6 +71,18 @@ class FileLoaderSpec extends ObjectBehavior
         $dictionary->toArray()->shouldEqual(['Foo', 'Bar', 'Baz']);
     }
 
+    public function it_exposes_the_base_path(): void
+    {
+        $this->beConstructedWith('foo/path');
+        $this->getBasePath()->shouldEqual('foo/path');
+    }
+
+    public function it_exposes_the_delimiter(): void
+    {
+        $this->beConstructedWith('', '~delimiter~');
+        $this->getDelimiter()->shouldEqual('~delimiter~');
+    }
+
     /**
      * @param string $data
      *

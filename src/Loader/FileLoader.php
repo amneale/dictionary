@@ -51,4 +51,20 @@ class FileLoader implements Loader
 
         return new Dictionary(...$words);
     }
+
+    /**
+     * @return string
+     */
+    public function getBasePath(): string
+    {
+        return $this->basePath;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDelimiter(): string
+    {
+        return $this->delimiter;
+    }
 }
