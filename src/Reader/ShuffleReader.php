@@ -66,10 +66,10 @@ class ShuffleReader implements Reader
     /**
      * @param Dictionary $dictionary
      *
-     * @return int
+     * @return string
      */
-    private function getDictionaryKey(Dictionary $dictionary): int
+    private function getDictionaryKey(Dictionary $dictionary): string
     {
-        return spl_object_id($dictionary);
+        return md5(serialize($dictionary));
     }
 }
