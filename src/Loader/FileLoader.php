@@ -6,7 +6,7 @@ namespace Dictionary\Loader;
 
 use Dictionary\Dictionary;
 
-class FileLoader implements Loader
+final class FileLoader implements Loader
 {
     /**
      * @var string
@@ -50,21 +50,5 @@ class FileLoader implements Loader
         $words = explode($this->delimiter, $contents);
 
         return new Dictionary(...$words);
-    }
-
-    /**
-     * @return string
-     */
-    public function getBasePath(): string
-    {
-        return $this->basePath;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDelimiter(): string
-    {
-        return $this->delimiter;
     }
 }

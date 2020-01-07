@@ -6,7 +6,7 @@ namespace Dictionary\Reader;
 
 use Dictionary\Dictionary;
 
-class ShuffleReader implements Reader
+final class ShuffleReader implements Reader
 {
     /**
      * @var Dictionary[]

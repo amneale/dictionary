@@ -6,7 +6,7 @@ namespace Dictionary\Reader;
 
 use Dictionary\Dictionary;
 
-class RandomReader implements Reader
+final class RandomReader implements Reader
 {
     /**
      * @inheritDoc
