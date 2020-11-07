@@ -56,11 +56,6 @@ class ShuffleReaderSpec extends ObjectBehavior
         }
     }
 
-    /**
-     * @param array $array
-     *
-     * @return array
-     */
     private function sort(array $array): array
     {
         sort($array);

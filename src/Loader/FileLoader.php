@@ -6,49 +6,30 @@ namespace Dictionary\Loader;
 
 use Dictionary\Dictionary;
 
-final class FileLoader implements Loader
+abstract class FileLoader implements Loader
 {
     /**
      * @var string
      */
-    private $basePath;
+    protected $basePath;
 
-    /**
-     * @var string
-     */
-    private $delimiter;
-
-    /**
-     * @param string $basePath
-     * @param string $delimiter
-     */
-    public function __construct(string $basePath = '', string $delimiter = "\n")
+    public function __construct(string $basePath = '')
     {
         $this->basePath = $basePath;
-        $this->delimiter = $delimiter;
     }
 
-    /**
-     * @param string $resource
-     * @param string $delimiter
-     *
-     * @return Dictionary
-     */
-    public static function fromFile(string $resource, string $delimiter = "\n"): Dictionary
+    final public function load(string $resource): Dictionary
     {
-        $loader = new static('', $delimiter);
-
-        return $loader->load($resource);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function load(string $resource): Dictionary
-    {
-        $contents = file_get_contents($this->basePath . $resource);
-        $words = explode($this->delimiter, $contents);
+        $contents = file_get_contents($this->getPath($resource));
+        $words = $this->getWords($contents);
 
         return new Dictionary(...$words);
     }
+
+    abstract protected function getPath(string $resource): string;
+
+    /**
+     * @return string[]
+     */
+    abstract protected function getWords(string $contents): array;
 }

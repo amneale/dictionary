@@ -35,21 +35,12 @@ class RandomReaderSpec extends ObjectBehavior
         $string->shouldBeInArray(self::STRINGS);
     }
 
-    /**
-     * @return array
-     */
     public function getMatchers(): array
     {
         return [
             'beInArray' => static function ($subject, $array) {
                 if (!in_array($subject, $array, true)) {
-                    throw new FailureException(
-                        sprintf(
-                            '"%s" expected to be in array %s, but it is not.',
-                            $subject,
-                            json_encode($array)
-                        )
-                    );
+                    throw new FailureException(sprintf('"%s" expected to be in array %s, but it is not.', $subject, json_encode($array)));
                 }
 
                 return true;

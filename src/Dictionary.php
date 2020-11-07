@@ -35,9 +35,6 @@ final class Dictionary implements \Countable, \IteratorAggregate
         return new \ArrayIterator($this->words);
     }
 
-    /**
-     * @return array
-     */
     public function toArray(): array
     {
         return $this->words;

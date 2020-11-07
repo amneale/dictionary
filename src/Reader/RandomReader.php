@@ -8,9 +8,6 @@ use Dictionary\Dictionary;
 
 final class RandomReader implements Reader
 {
-    /**
-     * @inheritDoc
-     */
     public function read(Dictionary $dictionary): string
     {
         $words = $dictionary->toArray();
