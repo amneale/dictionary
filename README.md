@@ -20,12 +20,12 @@ for ($i = 0; $i < count($dictionary); ++$i) {
 
 Loading a dictionary from a file:
 ``` php
-$dictionary = Dictionary\Loader\FileLoader::fromFile('/foo/bar/baz.txt');
+$dictionary = Dictionary\Loader\SimpleFileLoader::fromFile('/foo/bar/baz.txt');
 ```
 
 Loading a dictionary from a CSV file:
 ``` php
-$dictionary = Dictionary\Loader\FileLoader::fromFile('/foo/bar/baz.csv', ',');
+$dictionary = Dictionary\Loader\SimpleFileLoader::fromFile('/foo/bar/baz.csv', ',');
 ```
 
 ## Testing
