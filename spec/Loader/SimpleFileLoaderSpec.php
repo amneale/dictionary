@@ -9,7 +9,7 @@ use Dictionary\Loader\Loader;
 use PhpSpec\ObjectBehavior;
 use Vfs\FileSystem;
 
-class FileLoaderSpec extends ObjectBehavior
+class SimpleFileLoaderSpec extends ObjectBehavior
 {
     /**
      * @var FileSystem
@@ -71,11 +71,6 @@ class FileLoaderSpec extends ObjectBehavior
         $dictionary->toArray()->shouldEqual(['Foo', 'Bar', 'Baz']);
     }
 
-    /**
-     * @param string $data
-     *
-     * @return string
-     */
     private function writeToFile(string $data): string
     {
         if (null === self::$filesystem) {

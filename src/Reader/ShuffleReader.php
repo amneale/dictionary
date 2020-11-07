@@ -18,9 +18,6 @@ final class ShuffleReader implements Reader
      */
     private $indexes = [];
 
-    /**
-     * @inheritDoc
-     */
     public function read(Dictionary $dictionary): string
     {
         if ($this->needsShuffling($dictionary)) {
@@ -33,11 +30,6 @@ final class ShuffleReader implements Reader
         return $words[$this->indexes[$key]++];
     }
 
-    /**
-     * @param Dictionary $dictionary
-     *
-     * @return bool
-     */
     private function needsShuffling(Dictionary $dictionary): bool
     {
         $key = $this->getDictionaryKey($dictionary);
@@ -49,9 +41,6 @@ final class ShuffleReader implements Reader
         return $this->indexes[$key] === count($this->dictionaries[$key]);
     }
 
-    /**
-     * @param Dictionary $dictionary
-     */
     private function shuffle(Dictionary $dictionary): void
     {
         $key = $this->getDictionaryKey($dictionary);
@@ -63,11 +52,6 @@ final class ShuffleReader implements Reader
         $this->indexes[$key] = 0;
     }
 
-    /**
-     * @param Dictionary $dictionary
-     *
-     * @return string
-     */
     private function getDictionaryKey(Dictionary $dictionary): string
     {
         return md5(serialize($dictionary));
