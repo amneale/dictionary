@@ -14,8 +14,8 @@
         "ext-json": "*"
     },
     "require-dev": {
-        "phpspec/phpspec": "^5.1",
-        "webmozart/assert": "^1.4",
+        "phpspec/phpspec": "^7.0",
+        "webmozart/assert": "^1.9.1",
         "adlawson/vfs": "^0.12.1",
         "friendsofphp/php-cs-fixer": "^2.15"
     },
