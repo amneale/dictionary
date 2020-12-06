@@ -29,13 +29,15 @@ install: vendor
 # Test #
 ########
 
-.PHONY: test test-unit code-style
+.PHONY: test test-unit fmt
 
 test: TEST:=1
-test: code-style test-unit ## Run all tests & analyses
+test: fmt test-unit ## Run all tests & analyses
 
 test-unit: vendor ## Run unit tests
 	./vendor/bin/phpspec run -fdot
 
-code-style: vendor ## Analyse code style
-	./vendor/bin/php-cs-fixer fix $(if $(TEST), -v --dry-run)
+fmt: ## Fix formatting issues
+	docker run --rm \
+		--volume $$(pwd):/project \
+		herloct/php-cs-fixer fix $(if $(TEST), -v --dry-run)

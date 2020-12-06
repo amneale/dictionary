@@ -31,7 +31,7 @@ $dictionary = Dictionary\Loader\SimpleFileLoader::fromFile('/foo/bar/baz.csv', '
 ## Testing
 To run automatic code-style fixer
 ``` bash
-$ make code-style
+$ make fmt
 ```
 
 To run all tests

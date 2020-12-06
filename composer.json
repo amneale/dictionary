@@ -10,14 +10,13 @@
         }
     ],
     "require": {
-        "php": "^7.3",
+        "php": "^7.3 || ^8.0",
         "ext-json": "*"
     },
     "require-dev": {
-        "phpspec/phpspec": "^5.1",
-        "webmozart/assert": "^1.4",
-        "adlawson/vfs": "^0.12.1",
-        "friendsofphp/php-cs-fixer": "^2.15"
+        "phpspec/phpspec": "^7.0",
+        "webmozart/assert": "^1.9.1",
+        "adlawson/vfs": "^0.12.1"
     },
     "autoload": {
         "psr-4": {
