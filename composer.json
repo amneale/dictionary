@@ -16,8 +16,7 @@
     "require-dev": {
         "phpspec/phpspec": "^7.0",
         "webmozart/assert": "^1.9.1",
-        "adlawson/vfs": "^0.12.1",
-        "friendsofphp/php-cs-fixer": "^2.15"
+        "adlawson/vfs": "^0.12.1"
     },
     "autoload": {
         "psr-4": {
