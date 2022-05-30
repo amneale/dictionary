@@ -10,11 +10,11 @@
         }
     ],
     "require": {
-        "php": "^7.3 || ^8.0",
+        "php": "^7.4 || ^8.0",
         "ext-json": "*"
     },
     "require-dev": {
-        "phpspec/phpspec": "^7.0",
+        "phpspec/phpspec": "^7.2",
         "webmozart/assert": "^1.9.1",
         "adlawson/vfs": "^0.12.1"
     },
