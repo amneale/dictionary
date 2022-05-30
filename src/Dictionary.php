@@ -22,7 +22,7 @@ final class Dictionary implements \Countable, \IteratorAggregate
     /**
      * @inheritDoc
      */
-    public function count()
+    public function count(): int
     {
         return count($this->words);
     }

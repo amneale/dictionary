@@ -7,15 +7,9 @@ namespace spec\Dictionary\Loader;
 use Dictionary\Dictionary;
 use Dictionary\Loader\Loader;
 use PhpSpec\ObjectBehavior;
-use Vfs\FileSystem;
 
 class SimpleFileLoaderSpec extends ObjectBehavior
 {
-    /**
-     * @var FileSystem
-     */
-    private static $filesystem;
-
     /**
      * @var string
      */
@@ -73,12 +67,7 @@ class SimpleFileLoaderSpec extends ObjectBehavior
 
     private function writeToFile(string $data): string
     {
-        if (null === self::$filesystem) {
-            self::$filesystem = FileSystem::factory();
-            self::$filesystem->mount();
-        }
-
-        $filename = 'vfs://' . uniqid('file', true) . 'txt';
+        $filename = tempnam(sys_get_temp_dir(), uniqid('file', true));
         file_put_contents($filename, $data);
 
         return $filename;
