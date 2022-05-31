@@ -20,20 +20,19 @@ final class ShuffleReader implements Reader
 
     public function read(Dictionary $dictionary): string
     {
-        if ($this->needsShuffling($dictionary)) {
-            $this->shuffle($dictionary);
+        $key = spl_object_id($dictionary);
+
+        if ($this->needsShuffling($key)) {
+            $this->shuffle($dictionary, $key);
         }
 
-        $key = $this->getDictionaryKey($dictionary);
         $words = $this->dictionaries[$key]->toArray();
 
         return $words[$this->indexes[$key]++];
     }
 
-    private function needsShuffling(Dictionary $dictionary): bool
+    private function needsShuffling(int $key): bool
     {
-        $key = $this->getDictionaryKey($dictionary);
-
         if (!isset($this->dictionaries[$key], $this->indexes[$key])) {
             return true;
         }
@@ -41,19 +40,12 @@ final class ShuffleReader implements Reader
         return $this->indexes[$key] === count($this->dictionaries[$key]);
     }
 
-    private function shuffle(Dictionary $dictionary): void
+    private function shuffle(Dictionary $dictionary, int $key): void
     {
-        $key = $this->getDictionaryKey($dictionary);
-
         $dictionaryArray = $dictionary->toArray();
         shuffle($dictionaryArray);
 
         $this->dictionaries[$key] = new Dictionary(...$dictionaryArray);
         $this->indexes[$key] = 0;
-    }
-
-    private function getDictionaryKey(Dictionary $dictionary): string
-    {
-        return md5(serialize($dictionary));
     }
 }
