@@ -9,12 +9,14 @@ $ composer require amneale/dictionary
 ```
 
 ## Usage
-Creating a dictionary from strings, and reading the content in a random, shuffled order:
+
+Creating a dictionary from strings, and reading the content a random, shuffled order:
 ``` php
+$reader = new ShuffleReader();
 $dictionary = new Dictionary('foo', 'bar', 'baz');
 
 for ($i = 0; $i < count($dictionary); ++$i) {
-    echo $this->read($dictionary) . "\n";
+    echo $reader->read($dictionary) . "\n";
 }
 ```
 
